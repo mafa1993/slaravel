@@ -1,0 +1,19 @@
+{
+    "name": "mfx/slaravel",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "Slaravel\\":"src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.example.com" //第一个源
+        },
+        {
+            "type": "composer",
+            "url": "http://packages.example.com" //第二个源
+        }]
+}
