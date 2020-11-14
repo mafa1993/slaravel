@@ -46,17 +46,20 @@ class Container
      */
     public function make($abstract,$arguments = [])
     {
-        //判断标识是否存在
+        /* //门面也是使用make进行类的解析，并没有传递标识，直接传递的对象，所以这里去除判断
+         * //判断标识是否存在
         if(!isset($this->bindings[$abstract]) and !isset($this->instances[$abstract])){
             exit('标识不存在，没有进行注册');
-        }
+        }*/
 
         //判断是否是单利注册,即在instances是否存在
         if($this->instances[$abstract]){
             return $this->instances[$abstract];
         }
 
-        $obj = $this->bindings[$abstract]['concrete'];
+        $obj = $this->getConrete($abstract);
+
+        //$obj = $this->bindings[$abstract]['concrete'];
         //判断是否是闭包, Closure为闭包
         if ($obj instanceof \Closure){
             $obj =  $obj();
@@ -95,7 +98,7 @@ class Container
         $this->instances[$abstract] = $instance;
 
         //测试app是否成功注册
-        var_dump($this->instances);
+        //var_dump($this->instances);
     }
 
     /**
@@ -106,6 +109,20 @@ class Container
         if(isset($this->bindings[$abstract])){
             unset($this->bindings[$abstract]);
         }
+    }
+
+
+    /**
+     * @param mixed $abstract 标识或者对象
+     * @return object
+     */
+    public function getConrete($abstract){
+        if(isset($this->bindings[$abstract])){
+            return $this->bindings[$abstract]['concrete'];
+        }
+
+        return $abstract;
+
     }
 
 }

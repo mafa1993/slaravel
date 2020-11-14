@@ -32,6 +32,9 @@ class Application extends Container
 
         //给Facade注入application类，laravel中是封装在了服务中心, 在registerBaseServiders中
         Facade::setFacadeApplication($this);
+
+        //注册核心的容器别名
+        $this->registerCoreContainerAliases();
     }
 
     /**
@@ -48,5 +51,18 @@ class Application extends Container
      */
     public function registerBaseBindings(){
         $this->instance('app',$this);
+    }
+
+    /**
+     * 核心容器绑定
+     */
+    public function registerCoreContainerAliases(){
+        $binds = [
+            'FacadeTest' => \Slaravel\Support\Facades\FacadeTest::class
+        ];
+
+        foreach ($binds as $name => $class){
+            $this->bind($name,$class);
+        }
     }
 }

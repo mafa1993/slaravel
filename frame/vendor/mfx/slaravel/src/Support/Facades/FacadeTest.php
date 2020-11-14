@@ -9,10 +9,12 @@
 namespace Slaravel\Support\Facades;
 
 
+use Slaravel\Facades\TestFa;
+
 class FacadeTest extends Facade
 {
     public static function getFacadeAccessor()
     {
-        return 'FacadeTest';
+        return TestFa::class;
     }
 }
