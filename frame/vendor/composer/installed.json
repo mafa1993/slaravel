@@ -1,0 +1,27 @@
+{
+    "packages": [
+        {
+            "name": "mfx/slaravel",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../laravel",
+                "reference": "a5338eb3e6d4bdd688c2975c03f4860b6d768c64"
+            },
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Slaravel\\": "src"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            },
+            "install-path": "../mfx/slaravel"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

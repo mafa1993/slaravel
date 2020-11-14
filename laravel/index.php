@@ -10,7 +10,12 @@ use Slaravel\Test;
 //引入自动加载文件
 require_once  'vendor/autoload.php';
 //$a = new Test();
+$app = new \Slaravel\Foundation\Application();
 
+$app->make('app');
+
+
+# region 容器测试
 $ioc = new \Slaravel\Container\Container();
 //$ioc->bind('test',Test::class);
 //$ioc->getBind();
@@ -59,5 +64,9 @@ $ioc->bind(Slaravel\Contracts\DB\DB::class,\Slaravel\Mysql::class);
 
 
 //解析容器里的类
+/*
+//测试单利是否成功，不重复实例化
 var_dump($ioc->make('test'));
-var_dump($ioc->make('test'));
+var_dump($ioc->make('test'));*/
+
+# endregion

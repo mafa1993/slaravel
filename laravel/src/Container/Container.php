@@ -84,5 +84,28 @@ class Container
         $this->bind($abstract,$concrete,$shared);
     }
 
+    /**
+     * 绑定实例到容器
+     * @param $abstract string 标识
+     * @param $instance object 实例化后的对象
+     */
+    public function instance($abstract,$instance){
+        //将bindings中的清除，instances中存在的话，防止在bindings中还存了一份
+        $this->removeBindings($abstract);
+        $this->instances[$abstract] = $instance;
+
+        //测试app是否成功注册
+        var_dump($this->instances);
+    }
+
+    /**
+     * 清除绑定的容器
+     * @param string $abstract 要清除的标识
+     */
+    public function removeBindings($abstract){
+        if(isset($this->bindings[$abstract])){
+            unset($this->bindings[$abstract]);
+        }
+    }
 
 }

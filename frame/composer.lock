@@ -1,0 +1,39 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "45600926a19adf700f7f5da4a27f5d8f",
+    "packages": [
+        {
+            "name": "mfx/slaravel",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../laravel",
+                "reference": "a5338eb3e6d4bdd688c2975c03f4860b6d768c64"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Slaravel\\": "src"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "mfx/slaravel": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
