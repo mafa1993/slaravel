@@ -18,6 +18,9 @@ $app->singleton('kernel',\App\Http\Kernel::class);
 $kernel = $app->make('kernel',[$app]);
 //使用kernel的handle方法，处理请求
 $kernel->handle($request = null);
+
+//读取配置测试
+var_dump($app->make('Config')->all());
 //
 
 

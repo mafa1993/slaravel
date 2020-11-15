@@ -9,7 +9,8 @@ use Slaravel\Foundation\Application;
 class Kernel
 {
     protected $bootstrappers = [
-        \Slaravel\Foundation\Bootstrap\RegisterFacade::class
+        \Slaravel\Foundation\Bootstrap\RegisterFacade::class,
+        \Slaravel\Foundation\Bootstrap\LoadConfig::class
     ];
 
     protected $app;
@@ -41,7 +42,7 @@ class Kernel
     public function bootstrap(){
         foreach ($this->bootstrappers as $bootstrapper){
             //使用容器获取每一项的实例，然后调用其的bootstrap方法
-            $this->app->make($bootstrapper)->bootstrap();
+            $this->app->make($bootstrapper)->bootstrap($this->app);
         }
     }
 

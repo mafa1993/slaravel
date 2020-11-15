@@ -47,6 +47,14 @@ class Application extends Container
     }
 
     /**
+     * 获取项目根路径
+     * @return mixed
+     */
+    public function getBasePath(){
+        return $this->basePath;
+    }
+
+    /**
      * 绑定自己到容器
      */
     public function registerBaseBindings(){
@@ -58,7 +66,9 @@ class Application extends Container
      */
     public function registerCoreContainerAliases(){
         $binds = [
-            'FacadeTest' => \Slaravel\Support\Facades\FacadeTest::class
+            'FacadeTest' => \Slaravel\Support\Facades\FacadeTest::class,
+            'Config' => \Slaravel\Config\Config::class, //加载配置类
+
         ];
 
         foreach ($binds as $name => $class){
