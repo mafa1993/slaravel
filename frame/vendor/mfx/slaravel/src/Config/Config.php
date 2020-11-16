@@ -19,7 +19,7 @@ class Config
             }
 
             $filename = pathinfo($file)['filename'];
-            $data[$filename] = $file;
+            $data[$filename] = require_once $config_path.DIRECTORY_SEPARATOR.$file;
         }
 
         $this->items = $data;
@@ -32,5 +32,19 @@ class Config
      */
     public function all(){
         return $this->items;
+    }
+
+    /**
+     * 获取具体配置
+     * @param string $key 文件名.具体键
+     */
+    public function get($key){
+        //利用变量，巧妙实现递归
+        $data = $this->items;
+        $key_arr = explode('.',$key);
+        foreach ($key_arr as $val){
+            $data = $data[$val];
+        }
+        return $data;
     }
 }

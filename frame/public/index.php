@@ -26,3 +26,50 @@ var_dump($app->make('Config')->all());
 
 //门面测试
 //\Slaravel\Support\Facades\FacadeTest::test();
+
+
+//ArrayAccess接口，当像调用数组一样使用类时触发 例如$this['event']
+//class AC implements ArrayAccess
+//{
+//    /**
+//     * 对象当做数组判断时触发
+//     * @param mixed $offset
+//     */
+//    public function offsetExists($offset)
+//    {
+//        echo '1';
+//        // TODO: Implement offsetExists() method.
+//    }
+//
+//    /**
+//     * 对象当做数组获取触发
+//     * @param mixed $offset
+//     */
+//    public function offsetGet($offset)
+//    {
+//        echo 2;
+//        // TODO: Implement offsetGet() method.
+//    }
+//
+//    /**
+//     * 把对象当做数组设置时
+//     * @param mixed $offset
+//     * @param mixed $value
+//     */
+//    public function offsetSet($offset, $value)
+//    {
+//        // TODO: Implement offsetSet() method.
+//    }
+//
+//    /**
+//     * 对象当做数组unset时触发
+//     * @param mixed $offset
+//     */
+//    public function offsetUnset($offset)
+//    {
+//        // TODO: Implement offsetUnset() method.
+//    }
+//}
+//
+//$a = new AC();
+//$a['abc'];

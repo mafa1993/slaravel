@@ -10,7 +10,7 @@ namespace Slaravel\Container;
 
 // 容器，主要用于存储服务
 // 主要包含两个方法，bind和make
-class Container
+class Container implements \ArrayAccess
 {
     //容器绑定后存储在数组中
     protected $bindings = [];
@@ -123,6 +123,45 @@ class Container
 
         return $abstract;
 
+    }
+
+
+    /**
+     * 对象当做数组判断时触发
+     * @param mixed $offset
+     */
+    public function offsetExists($offset)
+    {
+        echo '1';
+        // TODO: Implement offsetExists() method.
+    }
+
+    /**
+     * 对象当做数组获取触发，使用数组调用时，也可以解析类
+     * @param mixed $offset
+     */
+    public function offsetGet($offset)
+    {
+        return $this->make($offset);
+    }
+
+    /**
+     * 把对象当做数组设置时
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value)
+    {
+        // TODO: Implement offsetSet() method.
+    }
+
+    /**
+     * 对象当做数组unset时触发
+     * @param mixed $offset
+     */
+    public function offsetUnset($offset)
+    {
+        // TODO: Implement offsetUnset() method.
     }
 
 }

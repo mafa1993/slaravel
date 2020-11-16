@@ -75,4 +75,13 @@ class Application extends Container
             $this->bind($name,$class);
         }
     }
+
+    /**
+     * 將配置文件中配置的服務提供者進行註冊
+     */
+    public function registerConfigProviders(){
+        $providers = $this->make('Config')->get('app.providers');
+    }
+
+
 }
