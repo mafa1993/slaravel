@@ -4,7 +4,7 @@ namespace Slaravel\Support;
 
 use Slaravel\Foundation\Application;
 
-class serviceProvider
+class ServiceProvider
 {
     protected $app;
 

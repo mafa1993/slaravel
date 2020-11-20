@@ -1,6 +1,8 @@
 <?php
 namespace Slaravel\Foundation\Bootstrap;
 
+use Slaravel\Foundation\Application;
+
 class RegisterFacade
 {
     public function bootstrap(){

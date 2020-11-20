@@ -17,6 +17,8 @@ class Application extends Container
 {
 
     protected $basePath;
+    //存储已经注册过的服务提供者
+    public $serviceProviders;
     /**
      * Application constructor.
      * @param string $basePath 用于设置项目根目录
@@ -81,6 +83,16 @@ class Application extends Container
      */
     public function registerConfigProviders(){
         $providers = $this->make('Config')->get('app.providers');
+        //在构造函数中将$this传入，获得App类
+        (new ProviderRegistory($this))->load($providers);
+    }
+
+    /**
+     * 对已经进行加载的服务提供者进行标记
+     * @param string $provider
+     */
+    public function markAsRegistered($provider){
+        $this->servieProviders[] = $provider;
     }
 
 

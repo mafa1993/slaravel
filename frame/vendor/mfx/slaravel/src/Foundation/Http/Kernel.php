@@ -10,7 +10,8 @@ class Kernel
 {
     protected $bootstrappers = [
         \Slaravel\Foundation\Bootstrap\RegisterFacade::class,
-        \Slaravel\Foundation\Bootstrap\LoadConfig::class
+        \Slaravel\Foundation\Bootstrap\LoadConfig::class,
+        \Slaravel\Foundation\Bootstrap\RegisterProviders::class
     ];
 
     protected $app;
