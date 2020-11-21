@@ -5,23 +5,32 @@
  * Date: 2020/11/14 0014
  * Time: 17:51
  */
-
+ini_set("display_errors", "off");//打开错误提示
+ini_set("error_reporting",E_ERROR);//显示所有错误
 require_once  __DIR__.'/../vendor/autoload.php';
 
-//初始化app，绑定根目录等
+//初始化app，绑定根目录等，里面对核心容器进行了加载
 $app = new \Slaravel\Foundation\Application($_ENV['APP_BASE_PATH'] ?? dirname(__DIR__));
 //var_dump($app);
 
+//kernel加载了服务提供者
 $app->singleton('kernel',\App\Http\Kernel::class);
 
 //在使用容器获取kernel类，并注入app（内部需要使用application类进行类的注入）
 $kernel = $app->make('kernel',[$app]);
 //使用kernel的handle方法，处理请求
-$kernel->handle($request = null);
+//$kernel->handle($request = null);
+//测试请求对象
+//\Slaravel\Http\Request::capture()
+$kernel->handle(\Slaravel\Http\Request::capture());
+
 
 //读取配置测试
-var_dump($app->make('Config')->all());
-//
+//var_dump($app->make('Config')->all());
+//路由测试
+/*$route = $app->make('Route');
+$route->get('hello','world');
+var_dump($route->getRoutes());*/
 
 
 //门面测试

@@ -5,7 +5,7 @@ namespace Slaravel\Foundation;
 
 class ProviderRegistory
 {
-    protected $pp;
+    protected $app;
     public function __construct(Application $app)
     {
         $this->app = $app;

@@ -17,6 +17,8 @@ class Application extends Container
 {
 
     protected $basePath;
+    //保存所有已经启动过的服务提供者，已经启动过的不重复启动
+    protected $booted=false;
     //存储已经注册过的服务提供者
     public $serviceProviders;
     /**
@@ -70,12 +72,16 @@ class Application extends Container
         $binds = [
             'FacadeTest' => \Slaravel\Support\Facades\FacadeTest::class,
             'Config' => \Slaravel\Config\Config::class, //加载配置类
+            //'Route' => \Slaravel\Support\Facades\Route::class, //加载路由类
+            'Route' => \Slaravel\Route\Router::class
 
         ];
 
         foreach ($binds as $name => $class){
             $this->bind($name,$class);
         }
+       /* var_dump($this->bindings);
+        $this->make('Route');*/
     }
 
     /**
@@ -92,7 +98,17 @@ class Application extends Container
      * @param string $provider
      */
     public function markAsRegistered($provider){
-        $this->servieProviders[] = $provider;
+        $this->serviceProviders[] = $provider;
+    }
+
+    public function boot(){
+        if($this->booted){
+            return;
+        }
+        foreach ($this->serviceProviders as $provider){
+            $provider->boot();
+        }
+        $this->booted=true;
     }
 
 

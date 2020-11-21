@@ -48,7 +48,7 @@ class Container
     {
         //判断标识是否存在
         if(!isset($this->bindings[$abstract]) and !isset($this->instances[$abstract])){
-            exit('标识不存在，没有进行注册');
+            exit('标识不存在，没有进行注册'.$abstract);
         }
 
         //判断是否是单利注册,即在instances是否存在

@@ -11,7 +11,8 @@ class Kernel
     protected $bootstrappers = [
         \Slaravel\Foundation\Bootstrap\RegisterFacade::class,
         \Slaravel\Foundation\Bootstrap\LoadConfig::class,
-        \Slaravel\Foundation\Bootstrap\RegisterProviders::class
+        \Slaravel\Foundation\Bootstrap\RegisterProviders::class, //服务注册
+        \Slaravel\Foundation\Bootstrap\BootProviders::class,  //服务提供者启动
     ];
 
     protected $app;
@@ -26,7 +27,7 @@ class Kernel
      */
     public function handle($request=null){
         //通过路由发送请求
-        $this->sendRequestThroughRouter();
+        $this->sendRequestThroughRouter($request);
     }
 
     /**

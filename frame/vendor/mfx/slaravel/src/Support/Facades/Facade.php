@@ -27,7 +27,7 @@ class Facade
         //static 和 self区别： static如果是子调用，static代表子，self永远指向Facade
         $instance = static::getFacadeRoot();
 
-        var_dump($method);
+        //var_dump($method);
         return $instance->$method($arguments);
 
     }
