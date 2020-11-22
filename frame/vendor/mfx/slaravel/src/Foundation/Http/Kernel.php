@@ -33,9 +33,15 @@ class Kernel
     /**
      * 通过路由发送请求
      */
-    public function sendRequestThroughRouter(){
+    public function sendRequestThroughRouter($request){
         //引导类启动
         $this->bootstrap();
+
+        //請求綁定
+        $this->app->instance('request',$request);
+
+        //路由分发请求
+        $this->app->make('Route')->dispatcher($request);
     }
 
     /**

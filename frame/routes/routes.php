@@ -8,6 +8,8 @@
 use \Slaravel\Support\Facades\Route;
 
 
-/*Route::get('admin',function (){
+Route::get('admin',function (){
     echo 123;
-});*/
+});
+
+Route::get('hello','Hello@index');
