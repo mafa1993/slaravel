@@ -5,6 +5,7 @@ namespace Slaravel\Foundation\Http;
 //app/http/kernel的父类, 完成一些服务启动
 
 use Slaravel\Foundation\Application;
+use Slaravel\Pipline\Pipline;
 
 class Kernel
 {
@@ -41,7 +42,23 @@ class Kernel
         $this->app->instance('request',$request);
 
         //路由分发请求
-        $this->app->make('Route')->dispatcher($request);
+        //$this->app->make('Route')->dispatcher($request);
+
+        return (new Pipline($this->app))
+            ->send($request)
+            ->through($this->middleware)
+            ->then($this->dispatchToRouter());
+
+    }
+
+    /**
+     * 把中间件执行的结果封装成闭包
+     * @return \Closure
+     */
+    public function dispatchToRouter(){
+        return function ($request){
+            $this->app->make('Route')->dispatcher($request);
+        };
     }
 
     /**
