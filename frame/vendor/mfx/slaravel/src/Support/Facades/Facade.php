@@ -23,12 +23,13 @@ class Facade
      */
     public static function __callStatic($method, $arguments)
     {
+
         //创建实例
         //static 和 self区别： static如果是子调用，static代表子，self永远指向Facade
         $instance = static::getFacadeRoot();
-
         //var_dump($method);
-        return $instance->$method($arguments);
+        //var_dump($arguments);
+        return $instance->$method(...$arguments);
 
     }
 
@@ -53,12 +54,15 @@ class Facade
             return $obj;
         }
 
+
         if(isset(static::$resolvedInstance[$obj])){
             return static::$resolvedInstance[$obj];
         }
+
         //var_dump($obj);
         //门面也是使用容器的make方法进行解析
-        return static::$resolvedInstance[$obj] = static::$app->make($obj);
+       // return static::$resolvedInstance[$obj] = static::$app->make($obj,static::app);
+        return static::$resolvedInstance[$obj] = static::$app[$obj];
     }
 
 

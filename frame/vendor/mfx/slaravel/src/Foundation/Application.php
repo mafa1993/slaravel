@@ -11,6 +11,7 @@ namespace Slaravel\Foundation;
 
 
 use Slaravel\Container\Container;
+use Slaravel\Event\Event;
 use Slaravel\Support\Facades\Facade;
 
 class Application extends Container
@@ -39,6 +40,8 @@ class Application extends Container
 
         //注册核心的容器别名
         $this->registerCoreContainerAliases();
+
+        $this->registerBaseServicProvider();
     }
 
     /**
@@ -111,5 +114,29 @@ class Application extends Container
         $this->booted=true;
     }
 
+    /**
+     *
+     */
+    public function registerBaseServicProvider(){
+        //获取监听器
+        $files = scandir($this->getBasePath().'/app/Listeners/');
+        $event = new Event();
 
+        foreach ($files as $file){
+            if(in_array($file,['.','..'])){
+                continue;
+            }
+
+            $class = 'App\\Listeners\\'.stristr($file,'.php',true);
+
+            if(class_exists($class)){
+                $listener = new $class($this);
+
+                //监听器注册，注册的监听器名字，具体监听器类，以及执行的方法
+                $event->listener($listener->getname(),[$listener,'handle']);
+            }
+        }
+
+        $this->instance('event',$event);
+    }
 }

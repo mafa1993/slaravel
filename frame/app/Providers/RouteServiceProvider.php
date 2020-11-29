@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
+use App\Http\Controller\Hello;
 use Slaravel\Support\Facades\Route;
 use Slaravel\Support\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
 
-    protected $namespace='App\Htpp\Controller';
+    protected $namespace='\App\Http\Controller';
 /*    public $bindings = [
         'test' =>
     ];*/

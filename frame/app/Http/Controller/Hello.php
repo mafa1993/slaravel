@@ -12,5 +12,8 @@ class Hello
 {
     public function index(){
         echo 'Hello 的 index';
+
+        //事件测试
+
     }
 }

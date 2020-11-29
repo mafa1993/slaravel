@@ -16,6 +16,6 @@ class Route extends Facade
     public static function getFacadeAccessor()
     {
         echo 'route facades '.Router::class;
-        return Router::class;
+        return 'Route';
     }
 }

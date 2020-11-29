@@ -42,12 +42,12 @@ class Kernel
         $this->app->instance('request',$request);
 
         //路由分发请求
-        //$this->app->make('Route')->dispatcher($request);
+        $this->app->make('Route')->dispatcher($request);
 
-        return (new Pipline($this->app))
+        /*return (new Pipline($this->app))
             ->send($request)
             ->through($this->middleware)
-            ->then($this->dispatchToRouter());
+            ->then($this->dispatchToRouter());*/
 
     }
 
@@ -57,7 +57,7 @@ class Kernel
      */
     public function dispatchToRouter(){
         return function ($request){
-            $this->app->make('Route')->dispatcher($request);
+            $this->app->make('Route',[$this->app])->dispatcher($request);
         };
     }
 

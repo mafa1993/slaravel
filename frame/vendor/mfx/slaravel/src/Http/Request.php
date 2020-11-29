@@ -20,8 +20,10 @@ class Request
 
         //请求方式
         $request->method = $_SERVER['REQUEST_METHOD'];
+       // var_dump($_SERVER);
+
         //请求参数
-        $request->uriPath = $_SERVER['PATH_INFO'];
+        $request->uriPath = empty($_SERVER['PATH_INFO'])? $_SERVER['REQUEST_URI']:$_SERVER['PATH_INFO'];
 
         return $request;
     }

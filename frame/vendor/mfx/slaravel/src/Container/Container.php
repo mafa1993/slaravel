@@ -164,4 +164,29 @@ class Container implements \ArrayAccess
         // TODO: Implement offsetUnset() method.
     }
 
+
+    protected static $instance;
+
+    /**
+     * 静态方式设置app
+     * @param null $container
+     * @return |null
+     */
+    public static function setInstance($container = null)
+    {
+        return static::$instance = $container;
+    }
+
+    /**
+     * 静态方式获取绑定的值
+     * @return array
+     */
+    public static function getInstance()
+    {
+        if (is_null(static::$instance)) {
+            static::$instance = new static;
+        }
+        return static::$instance;
+    }
+
 }

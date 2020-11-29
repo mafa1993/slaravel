@@ -51,7 +51,7 @@ class Router
     public function register($route_path){
         //因为门面传参是[...$arguments]
         echo 'router register   ';
-        require_once("$route_path[0]");
+        require_once("$route_path");
     }
 
     /**
@@ -121,6 +121,7 @@ class Router
     protected function getController(){
         if (!$this->controller){
             $class = $this->namespace.'\\'.explode('@',$this->action)[0];
+
             $this->controller = $this->app->make(ltrim($class,'\\'));
         }
 
